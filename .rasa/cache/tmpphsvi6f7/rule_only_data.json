@@ -1,0 +1,8 @@
+{
+  "rule_only_slots": [
+    "first_name"
+  ],
+  "rule_only_loops": [
+    "name_form"
+  ]
+}

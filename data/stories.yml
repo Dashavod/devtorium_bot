@@ -1,0 +1,151 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+
+- story: interactive_story_2
+  steps:
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - intent: mood_unhappy
+  - slot_was_set:
+    - first_name: dasha
+  - action: action_check_user
+  - action: action_check_questions
+  - intent: ask_question
+    entities:
+    - user_question: where my pen
+  - action: action_add_questions
+  - action: action_check_questions
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_question
+    entities:
+    - user_question: How long have been air alarm
+  - action: action_add_questions
+  - action: action_check_questions
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_check_user
+  - action: action_check_questions
+  - intent: ask_question
+    entities:
+    - user_question: How long have been air alarm
+  - slot_was_set:
+    - user_question: How long have been air alarm
+  - action: action_add_questions
+  - action: action_check_questions
+
+- story: interactive_story_2
+
+  steps:
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_check_user
+  - action: action_check_questions
+
+- story: interactive_story_1
+  steps:
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_check_user
+  - action: action_check_questions
+  - intent: ask_question
+    entities:
+    - user_question: how long a dnipro river
+  - slot_was_set:
+    - user_question: how long a dnipro river
+  - action: action_add_questions
+  - action: action_check_questions
+
+- story: interactive_story_1
+  steps:
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_check_user
+  - action: action_check_questions
+  - intent: ask_question
+    entities:
+    - user_question: how long a dnipro river
+  - slot_was_set:
+    - user_question: how long a dnipro river
+  - action: action_add_questions
+  - action: action_check_questions
+  - intent: ask_question
+    entities:
+    - user_question: where my pen
+  - slot_was_set:
+    - user_question: where my pen
+  - action: action_add_questions
+  - action: action_check_questions
