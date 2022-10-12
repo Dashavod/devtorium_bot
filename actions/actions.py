@@ -9,30 +9,43 @@ from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
 from pymongo import MongoClient
 
-client = MongoClient("mongodb+srv://root:nMoiWNI9fZAvAEf2@cluster0.hif69ym.mongodb.net/?retryWrites=true&w=majority")
-db = client.get_database('Train_Bot')
-users = db.Users
+class DBRepository:
+    
+    def __init__(self, table):
+        client = MongoClient("mongodb+srv://root:nMoiWNI9fZAvAEf2@cluster0.hif69ym.mongodb.net/?retryWrites=true&w=majority")
+        db = client.get_database('Train_Bot')
+        self.table = db[table]
+    def insert(self,param):
+        self.table.insert_one(param)
+    def find(self,filter):
+        return self.table.find_one(filter)
+    def update(self,filter,param):
+        return self.table.update_one(filter,param)   
+#client = MongoClient("mongodb+srv://root:nMoiWNI9fZAvAEf2@cluster0.hif69ym.mongodb.net/?retryWrites=true&w=majority")
+#db = client.get_database('Train_Bot')
+#users = db.Users
+#user = users.update_one({"name": "dasha"}, {'$push':{ 'questions': "lalala" }})
+class BaseRepository:
+    def __init__(self):
+        self.items = DBRepository("Users")
+    def findUser(self,name):
+        text = "Ok, i remember"
+        if(self.items.find({'name': name})):
+            text = "Hello glad to see you again"
+        else:
+            self.items.insert({'name': name, 'questions': []})
+        return text
+    def addQuestions(self,name, question):
+        self.items.update({"name": name}, {'$push':{ 'questions': question }})
+
+    def findQuestions(self,name):
+        user = self.items.find({"name": name})
+        return list(user['questions'])
 
 def clean_name(name):
     return "".join([c for c in name if c.isalpha()])
 
-def findUser(name):
-
-    text = "Ok, i remember you"
-
-    if(users.find_one({'name': name})):
-        text = "Hello glad to see you again"
-    else:
-        users.insert_one({'name': name, 'questions': []})
-    return text
-
-def addQuestions(name, question):
-    users.update_one({"name": name}, {'$push':{ 'questions': question }})
-
-def findQuestions(name):
-
-    user = users.find_one({"name": name})
-    return user['questions']
+users = BaseRepository()
 
 class ActionAddQuestions(Action):
 
@@ -45,7 +58,7 @@ class ActionAddQuestions(Action):
 
         first_name = tracker.get_slot("first_name")
         question = tracker.get_slot("user_question")
-        addQuestions(first_name,question)
+        users.addQuestions(first_name,question)
         dispatcher.utter_message(text=f"success add {question}")
 
         return SlotSet("user_question",None)
@@ -64,7 +77,7 @@ class ActionCheckQuestions(Action):
         if( first_name == None ):
             dispatcher.utter_message(text="enter name")
             return {"first_name": first_name}
-        res = findQuestions(first_name)
+        res = users.findQuestions(first_name)
         dispatcher.utter_message(text=str(res))
         dispatcher.utter_message(text="We waiting to response, maybe you want to add new questions")
 
@@ -81,7 +94,7 @@ class ActionCheckUser(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         first_name = tracker.get_slot("first_name")
-        res = findUser(first_name)
+        res = users.findUser(first_name)
         dispatcher.utter_message(text=res)
         return {"first_name": first_name}
     
