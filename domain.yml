@@ -1,7 +1,7 @@
 version: '3.1'
 intents:
 - affirm
-- ask_question
+- ask_general_question
 - bot_challenge
 - deny
 - goodbye
@@ -16,7 +16,19 @@ forms:
     - first_name
 entities:
 - user_question
+- operation
+- comparison
+  roles:
+  - first_operand
+  - second_operand
+  - theme_comparison
 slots:
+  operation:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: operation
   user_question:
     type: text
     influence_conversation: true
@@ -53,7 +65,7 @@ responses:
   utter_help:
   - text: Yes, i can help, do you have any question?
   utter_iamabot:
-  - text: I am a bot, powered by Rasa.
+  - text: I am a bot, {session_started_metadata} powered by Rasa.
 actions:
 - action_add_questions
 - action_check_questions

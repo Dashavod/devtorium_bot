@@ -1,5 +1,5 @@
+import pandas as pd
 from pymongo import MongoClient
-from msilib.schema import Error
 import json
 
 class DBRepository:
@@ -36,8 +36,15 @@ class BaseRepository:
         return list(user['questions'])
 
 
-users = BaseRepository()
-print(users.findQuestions("dasha"))
+# users = BaseRepository()
+# print(users.findQuestions("dasha"))
+client = MongoClient("mongodb+srv://root:nMoiWNI9fZAvAEf2@cluster0.hif69ym.mongodb.net/?retryWrites=true&w=majority")
+db = client["Train_Bot"]
+coll = db["Solar_system"]
+data = pd.read_csv("solar.csv")
+payload = json.loads(data.to_json(orient='records'))
+coll.insert_many(payload)
+print(coll.count())
 
 
 
