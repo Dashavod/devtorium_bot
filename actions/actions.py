@@ -25,7 +25,14 @@ class DBRepository:
 #db = client.get_database('Train_Bot')
 #users = db.Users
 #user = users.update_one({"name": "dasha"}, {'$push':{ 'questions': "lalala" }})
-class BaseRepository:
+class CosmoRepository:
+    def __init__(self):
+        self.items = DBRepository("Solar_system")
+    def findPlanet(self,name):
+        planet = self.items.find({"Name": name})
+        return planet['Distance']
+
+class UserRepository:
     def __init__(self):
         self.items = DBRepository("Users")
     def findUser(self,name):
@@ -45,7 +52,8 @@ class BaseRepository:
 def clean_name(name):
     return "".join([c for c in name if c.isalpha()])
 
-users = BaseRepository()
+users = UserRepository()
+cosmo = CosmoRepository()
 
 class ActionAddQuestions(Action):
 
@@ -62,7 +70,25 @@ class ActionAddQuestions(Action):
         dispatcher.utter_message(text=f"success add {question}")
 
         return SlotSet("user_question",None)
-    
+
+class ActionAskCosmoQuestion(Action):
+
+    def name(self) -> Text:
+        return "action_cosmo_question"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        planet = tracker.get_slot("planet")
+        parametr = tracker.get_slot("parameter")
+        if(planet == None):
+            return dispatcher.utter_message(text=f"No planet {planet}")
+        res = cosmo.findPlanet(planet)
+        dispatcher.utter_message(text=f"Radius of {planet} is {res}000km")
+
+        return {"planet": None}
+   
 
 class ActionCheckQuestions(Action):
 

@@ -35,16 +35,27 @@ class BaseRepository:
         user = self.items.find({"name": name})
         return list(user['questions'])
 
+class CosmoRepository:
+    def __init__(self):
+        self.items = DBRepository("Solar_system")
+    def findPlanet(self,name):
+        planet = self.items.find({"Name": name})
+        return planet['Distance']
+
+cosmo = CosmoRepository()
+
+res = cosmo.findPlanet("Earth")
+print(res)
 
 # users = BaseRepository()
 # print(users.findQuestions("dasha"))
-client = MongoClient("mongodb+srv://root:nMoiWNI9fZAvAEf2@cluster0.hif69ym.mongodb.net/?retryWrites=true&w=majority")
-db = client["Train_Bot"]
-coll = db["Solar_system"]
-data = pd.read_csv("solar.csv")
-payload = json.loads(data.to_json(orient='records'))
-coll.insert_many(payload)
-print(coll.count())
+# client = MongoClient("mongodb+srv://root:nMoiWNI9fZAvAEf2@cluster0.hif69ym.mongodb.net/?retryWrites=true&w=majority")
+# db = client["Train_Bot"]
+# coll = db["Solar_system"]
+# data = pd.read_csv("solar.csv")
+# payload = json.loads(data.to_json(orient='records'))
+# coll.insert_many(payload)
+# print(coll.count())
 
 
 

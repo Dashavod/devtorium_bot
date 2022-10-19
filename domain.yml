@@ -1,6 +1,7 @@
 version: '3.1'
 intents:
 - affirm
+- ask_cosmo_question
 - ask_general_question
 - bot_challenge
 - deny
@@ -15,27 +16,31 @@ forms:
     required_slots:
     - first_name
 entities:
+- planet
+- parameter
 - user_question
 - operation
-- comparison
-  roles:
-  - first_operand
-  - second_operand
-  - theme_comparison
 slots:
-  operation:
+  planet:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: operation
+      entity: planet
+      intent: ask_cosmo_question
+  parameter:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: parameter
+      intent: ask_cosmo_question
   user_question:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: user_question
-      intent: ask_question
   first_name:
     type: text
     influence_conversation: true
@@ -70,6 +75,7 @@ actions:
 - action_add_questions
 - action_check_questions
 - action_check_user
+- action_cosmo_question
 - utter_greet
 - utter_help
 - utter_slots_values

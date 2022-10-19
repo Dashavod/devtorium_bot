@@ -101,10 +101,13 @@ nlu:
     - i would know [where my pen](user_question)
     - My question is [How long have been air alarm](user_question)
     - yes i want to ask [how long a dnipro river](user_question)
-    - yes i want to ask [how long a dnipro river](user_question)
-    - i would know [where my pen](user_question)
 - intent: need_help
   examples: |
     - I need help
     - may you can help me
     - i need help
+- intent: ask_cosmo_question
+  examples: |
+    - What is a [radius](parameter) of [Earth](planet)
+    - How much a [radius](parameter) of [Jupiter](planet)?
+    - what is a [radius](parameter) of [Venus](planet)

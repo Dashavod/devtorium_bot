@@ -2,6 +2,7 @@ version: "3.1"
 
 stories:
 
+
 - story: add user and add new question
   steps:
   - intent: request_names
@@ -98,3 +99,16 @@ stories:
     - user_question: where my pen
   - action: action_add_questions
   - action: action_check_questions
+
+
+- story: simple cosmo question
+  steps:
+  - intent: ask_cosmo_question
+    entities:
+    - parameter: radius
+    - planet: Venus
+  - slot_was_set:
+    - planet: Venus
+  - slot_was_set:
+    - parameter: radius
+  - action: action_cosmo_question
