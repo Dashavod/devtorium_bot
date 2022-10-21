@@ -105,10 +105,7 @@ stories:
   steps:
   - intent: ask_cosmo_question
     entities:
-    - parameter: radius
-    - planet: Venus
+    - planet: Mars 
   - slot_was_set:
-    - planet: Venus
-  - slot_was_set:
-    - parameter: radius
+    - planet: Mars
   - action: action_cosmo_question

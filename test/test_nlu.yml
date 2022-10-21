@@ -1,0 +1,118 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+    - dasha
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: request_names
+  examples: |
+    - i want to give you my name
+    - give name
+    - you need to know my name
+    - do you know my name?
+    - name
+- intent: ask_general_question
+  examples: |
+    - [who want to play with me](user_question)
+    - [when i gradueted from uni?](user_question)
+    - [where my cat?](user_question)
+    - I want to ask [where my computer](user_question)
+    - I would to know [Why raining today?](user_question)
+    - My question is [When Easter in 2024](user_question)
+    - i would know [where my pen](user_question)
+    - My question is [How long have been air alarm](user_question)
+    - yes i want to ask [how long a dnipro river](user_question)
+- intent: need_help
+  examples: |
+    - I need help
+    - may you can help me
+    - i need help
+- intent: ask_cosmo_question
+  examples: |
+    - What is a radius of [Earth](planet)
+    - How much a radius of [Jupiter](planet)?
+    - what is a radius of [Venus](planet)
+    - what is a radius of [Mars](planet)
+    - what is a radius of [Mercury](planet)
+    - what is a radius of [Saturn](planet)
+    - what is a radius of [Neptune](planet)
+    - what is a radius of [Uran](planet)

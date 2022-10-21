@@ -87,7 +87,7 @@ class ActionAskCosmoQuestion(Action):
         res = cosmo.findPlanet(planet)
         dispatcher.utter_message(text=f"Radius of {planet} is {res}000km")
 
-        return {"planet": None}
+        return SlotSet("planet",None)
    
 
 class ActionCheckQuestions(Action):

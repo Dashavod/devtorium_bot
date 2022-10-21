@@ -108,6 +108,6 @@ nlu:
     - i need help
 - intent: ask_cosmo_question
   examples: |
-    - What is a [radius](parameter) of [Earth](planet)
-    - How much a [radius](parameter) of [Jupiter](planet)?
-    - what is a [radius](parameter) of [Venus](planet)
+    - What is a radius of [Earth](planet)
+    - How much a radius of [Jupiter](planet)?
+    - what is a radius of [Venus](planet)

@@ -1,0 +1,111 @@
+version: "3.1"
+
+stories:
+
+
+- story: add user and add new question
+  steps:
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - intent: mood_unhappy
+  - slot_was_set:
+    - first_name: dasha
+  - action: action_check_user
+  - action: action_check_questions
+  - intent: ask_general_question
+    entities:
+    - user_question: where my pen
+  - action: action_add_questions
+  - action: action_check_questions
+
+- story: ask question without name
+  steps:
+  - intent: ask_general_question
+    entities:
+    - user_question: How long have been air alarm
+  - action: action_add_questions
+  - action: action_check_questions
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_check_user
+  - action: action_check_questions
+  - intent: ask_general_question
+    entities:
+    - user_question: How long have been air alarm
+  - slot_was_set:
+    - user_question: How long have been air alarm
+  - action: action_add_questions
+  - action: action_check_questions
+
+- story: only save user
+
+  steps:
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_check_user
+  - action: action_check_questions
+
+
+- story: add two questions
+  steps:
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - first_name: dasha
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_check_user
+  - action: action_check_questions
+  - intent: ask_general_question
+    entities:
+    - user_question: how long a dnipro river
+  - slot_was_set:
+    - user_question: how long a dnipro river
+  - action: action_add_questions
+  - action: action_check_questions
+  - intent: ask_general_question
+    entities:
+    - user_question: where my pen
+  - slot_was_set:
+    - user_question: where my pen
+  - action: action_add_questions
+  - action: action_check_questions
+
+
+- story: simple cosmo question
+  steps:
+  - intent: ask_cosmo_question
+    entities:
+    - planet: Mars 
+  - slot_was_set:
+    - planet: Mars
+  - action: action_cosmo_question

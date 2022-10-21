@@ -89,3 +89,29 @@ stories:
       are you a bot?
     intent: bot_challenge
   - action: utter_iamabot
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_cosmo_question
+    entities:
+    - planet: Mercury
+  - action: action_cosmo_question
+  - intent: ask_cosmo_question
+    entities:
+    - planet: Earth
+  - slot_was_set:
+    - planet: Earth
+  - action: action_cosmo_question
+  - intent: ask_cosmo_question
+    entities:
+    - planet: Earth
+  - slot_was_set:
+    - planet: Earth
+  - action: action_cosmo_question
+  - intent: ask_cosmo_question
+    entities:
+    - planet: Venus
+  - slot_was_set:
+    - planet: Venus
+  - action: action_cosmo_question
+  - intent: ask_cosmo_question

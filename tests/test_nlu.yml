@@ -1,0 +1,8 @@
+version: "3.1"
+nlu:
+- intent: ask_cosmo_question
+  examples: |
+    - what is radius of [Mercury](planet)
+    - raduis [Earth](planet)
+    - radius [Venus](planet)
+    - radius Mars
