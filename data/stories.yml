@@ -15,40 +15,7 @@ stories:
     - first_name: dasha
   - action: action_check_user
   - action: action_check_questions
-  - intent: ask_general_question
-    entities:
-    - user_question: where my pen
-  - action: action_add_questions
-  - action: action_check_questions
 
-- story: ask question without name
-  steps:
-  - intent: ask_general_question
-    entities:
-    - user_question: How long have been air alarm
-  - action: action_add_questions
-  - action: action_check_questions
-  - intent: request_names
-  - action: name_form
-  - active_loop: name_form
-  - slot_was_set:
-    - requested_slot: first_name
-  - slot_was_set:
-    - first_name: dasha
-  - slot_was_set:
-    - first_name: dasha
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: action_check_user
-  - action: action_check_questions
-  - intent: ask_general_question
-    entities:
-    - user_question: How long have been air alarm
-  - slot_was_set:
-    - user_question: How long have been air alarm
-  - action: action_add_questions
-  - action: action_check_questions
 
 - story: only save user
 
@@ -85,27 +52,23 @@ stories:
   - active_loop: null
   - action: action_check_user
   - action: action_check_questions
-  - intent: ask_general_question
-    entities:
-    - user_question: how long a dnipro river
-  - slot_was_set:
-    - user_question: how long a dnipro river
-  - action: action_add_questions
-  - action: action_check_questions
-  - intent: ask_general_question
-    entities:
-    - user_question: where my pen
-  - slot_was_set:
-    - user_question: where my pen
-  - action: action_add_questions
-  - action: action_check_questions
+
 
 
 - story: simple cosmo question
   steps:
   - intent: ask_cosmo_question
     entities:
-    - planet: Mars 
+    - planet 
   - slot_was_set:
-    - planet: Mars
+    - planet
   - action: action_cosmo_question
+
+- story: simple orbit question
+  steps:
+  - intent: ask_orbit_question
+    entities:
+    - planet 
+  - slot_was_set:
+    - planet
+  - action: action_orbit_question

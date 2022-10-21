@@ -1,6 +1,7 @@
 
 from msilib.schema import Error
 from typing import Text, List, Any, Dict
+from unicodedata import name
 from urllib import response
 
 from rasa_sdk import Tracker, FormValidationAction,Action
@@ -20,7 +21,10 @@ class DBRepository:
     def find(self,filter):
         return self.table.find_one(filter)
     def update(self,filter,param):
-        return self.table.update_one(filter,param)   
+        return self.table.update_one(filter,param) 
+    def find_many(self,filter):
+        items = self.table.find(filter)
+        return list(items)
 #client = MongoClient("mongodb+srv://root:nMoiWNI9fZAvAEf2@cluster0.hif69ym.mongodb.net/?retryWrites=true&w=majority")
 #db = client.get_database('Train_Bot')
 #users = db.Users
@@ -31,7 +35,9 @@ class CosmoRepository:
     def findPlanet(self,name):
         planet = self.items.find({"Name": name})
         return planet['Distance']
-
+    def filterPlanet(self,filter):
+        planets = self.items.find_many({"Orbits": filter})
+        return planets
 class UserRepository:
     def __init__(self):
         self.items = DBRepository("Users")
@@ -81,7 +87,6 @@ class ActionAskCosmoQuestion(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         planet = tracker.get_slot("planet")
-        parametr = tracker.get_slot("parameter")
         if(planet == None):
             return dispatcher.utter_message(text=f"No planet {planet}")
         res = cosmo.findPlanet(planet)
@@ -89,7 +94,25 @@ class ActionAskCosmoQuestion(Action):
 
         return SlotSet("planet",None)
    
+class ActionAskOrbitQuestion(Action):
 
+    def name(self) -> Text:
+        return "action_orbit_question"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        planet = tracker.get_slot("planet")
+        if(planet == None):
+            return dispatcher.utter_message(text=f"No planet {planet}")
+        res = list(cosmo.filterPlanet(planet))
+        names = []
+        for i in res: names.append(i["Name"])
+        dispatcher.utter_message(text=f"On orbit {planet}:")
+
+        dispatcher.utter_message(text=names)
+        return SlotSet("planet",None)
 class ActionCheckQuestions(Action):
 
     def name(self) -> Text:

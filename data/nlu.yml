@@ -90,17 +90,7 @@ nlu:
     - you need to know my name
     - do you know my name?
     - name
-- intent: ask_general_question
-  examples: |
-    - [who want to play with me](user_question)
-    - [when i gradueted from uni?](user_question)
-    - [where my cat?](user_question)
-    - I want to ask [where my computer](user_question)
-    - I would to know [Why raining today?](user_question)
-    - My question is [When Easter in 2024](user_question)
-    - i would know [where my pen](user_question)
-    - My question is [How long have been air alarm](user_question)
-    - yes i want to ask [how long a dnipro river](user_question)
+
 - intent: need_help
   examples: |
     - I need help
@@ -111,3 +101,20 @@ nlu:
     - What is a radius of [Earth](planet)
     - How much a radius of [Jupiter](planet)?
     - what is a radius of [Venus](planet)
+- intent: ask_orbit_question
+  examples: |
+    - What is a planet on orbit of [Earth](planet)
+    - Which satelits around [Jupiter](planet)
+    - What planet around the [Sun](planet)
+
+- lookup: planets
+  examples: |
+    - Earth
+    - Jupiter
+    - Venus
+    - Mars
+    - Mercury
+    - Neptune
+    - Saturn
+    - Uran
+    - Sun

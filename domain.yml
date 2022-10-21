@@ -4,7 +4,7 @@ intents:
 - ask_cosmo_question:
     use_entities:
     - planet
-- ask_general_question
+- ask_orbit_question
 - bot_challenge
 - deny
 - goodbye
@@ -29,7 +29,6 @@ slots:
     mappings:
     - type: from_entity
       entity: planet
-      intent: ask_cosmo_question
   user_question:
     type: text
     influence_conversation: true
@@ -68,6 +67,7 @@ responses:
   - text: I am a bot, {session_started_metadata} powered by Rasa.
 actions:
 - action_add_questions
+- action_orbit_question
 - action_check_questions
 - action_check_user
 - action_cosmo_question
