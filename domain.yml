@@ -4,6 +4,7 @@ intents:
 - ask_cosmo_question:
     use_entities:
     - planet
+- ask_info_planet
 - ask_orbit_question
 - bot_challenge
 - deny
@@ -76,6 +77,7 @@ actions:
 - utter_slots_values
 - utter_submit
 - validate_name_form
+- action_info_planet
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

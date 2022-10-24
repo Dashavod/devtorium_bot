@@ -107,6 +107,11 @@ nlu:
     - Which satelits around [Jupiter](planet)
     - What planet around the [Sun](planet)
 
+- intent: ask_info_planet
+  examples: |
+    - Tell me all about [Saturn](planet)
+    - I would to get more information about [Uranus](planet)
+
 - lookup: planet
   examples: |
     - Earth
@@ -116,5 +121,5 @@ nlu:
     - Mercury
     - Neptune
     - Saturn
-    - Uran
+    - Uranus
     - Sun

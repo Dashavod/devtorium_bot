@@ -73,3 +73,12 @@ stories:
   - slot_was_set:
     - planet: Mercury
   - action: action_orbit_question
+
+  - story: simple general info planet question
+  steps:
+  - intent: ask_info_planet
+    entities:
+    - planet 
+  - slot_was_set:
+    - planet
+  - action: action_info_planet
