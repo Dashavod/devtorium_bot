@@ -118,6 +118,11 @@ nlu:
     - Tell me all about [Saturn](planet)
     - I would to get more information about [Uranus](planet)
 
+- intent: ask_comparsion_planet
+  examples: |
+  - What planet have longer rotation period [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
+  - Which year longer [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
+
 - lookup: planets
   examples: |
     - Earth

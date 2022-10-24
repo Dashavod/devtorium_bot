@@ -1,6 +1,7 @@
 version: '3.1'
 intents:
 - affirm
+- ask_comparsion_planet
 - ask_cosmo_question:
     use_entities:
     - planet
@@ -19,11 +20,26 @@ forms:
     required_slots:
     - first_name
 entities:
-- planet
+- planet:
+    roles:
+    - first_operand
+    - second_operand
 - parameter
 - user_question
 - operation
 slots:
+  first_operand:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: planet
+      role: first_operand
+  second_operand:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: planet
+      role: second_operand
   planet:
     type: text
     influence_conversation: true
@@ -68,16 +84,17 @@ responses:
   - text: I am a bot, {session_started_metadata} powered by Rasa.
 actions:
 - action_add_questions
-- action_orbit_question
 - action_check_questions
 - action_check_user
+- action_comparsion
 - action_cosmo_question
+- action_info_planet
+- action_orbit_question
 - utter_greet
 - utter_help
 - utter_slots_values
 - utter_submit
 - validate_name_form
-- action_info_planet
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

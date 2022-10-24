@@ -174,7 +174,26 @@ class ActionCheckUser(Action):
         res = users.findUser(first_name)
         dispatcher.utter_message(text=res)
         return {"first_name": first_name}
-    
+
+class ActionPlanetComparsion(Action):
+
+    def name(self) -> Text:
+        return "action_comparsion"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        first_operand = tracker.get_slot("first_operand")
+        second_operand = tracker.get_slot("second_operand")
+        firstInfo = cosmo.findPlanet(first_operand)
+        secondInfo = cosmo.findPlanet(second_operand)
+        if(abs(float(firstInfo['O_Period'])) > abs(float(secondInfo['O_Period']))):
+            dispatcher.utter_message(text=f"{first_operand} greater then {second_operand}")
+        else:
+            dispatcher.utter_message(text=f"{second_operand} greater then {first_operand}")
+        dispatcher.utter_message(text=f"{first_operand} have {firstInfo['O_Period']} days\n {second_operand} have {secondInfo['O_Period']} days\n ")
+
 
 class ValidateNameForm(FormValidationAction):
     def name(self) -> Text:

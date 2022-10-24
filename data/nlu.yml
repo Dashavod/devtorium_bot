@@ -90,7 +90,6 @@ nlu:
     - you need to know my name
     - do you know my name?
     - name
-
 - intent: need_help
   examples: |
     - I need help
@@ -106,11 +105,15 @@ nlu:
     - What is a planet on orbit of [Earth](planet)
     - Which satelits around [Jupiter](planet)
     - What planet around the [Sun](planet)
-
 - intent: ask_info_planet
   examples: |
     - Tell me all about [Saturn](planet)
     - I would to get more information about [Uranus](planet)
+- intent: ask_comparsion_planet
+  examples: |
+    - What planet have longer rotation period [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
+    - Which year greater [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
+    - Which year greater [Adrastea]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
 
 - lookup: planet
   examples: |

@@ -81,3 +81,26 @@ stories:
   - slot_was_set:
     - planet
   - action: action_info_planet
+
+- story: simple comparsion planet question
+  steps:
+  - intent: ask_comparsion_planet
+  - slot_was_set:
+    - first_operand
+  - slot_was_set:
+    - second_operand
+  - action: action_comparsion
+
+- story: comparsion planet question from interactive
+  steps:
+  - intent: ask_comparsion_planet
+    entities:
+    - planet: Uranus
+    - planet: Earth
+  - slot_was_set:
+    - first_operand: Uranus
+  - slot_was_set:
+    - second_operand: Earth
+  - action: action_comparsion
+
+
