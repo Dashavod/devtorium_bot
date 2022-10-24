@@ -45,7 +45,7 @@ class CosmoRepository:
 
 cosmo = CosmoRepository()
 
-res = cosmo.findPlanet("Sun")
+res = cosmo.findPlanet("Mars")
 print(res[0]["Name"])
 names = []
 for i in res: names.append(i["Name"])

@@ -107,7 +107,7 @@ nlu:
     - Which satelits around [Jupiter](planet)
     - What planet around the [Sun](planet)
 
-- lookup: planets
+- lookup: planet
   examples: |
     - Earth
     - Jupiter

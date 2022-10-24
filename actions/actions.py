@@ -25,10 +25,7 @@ class DBRepository:
     def find_many(self,filter):
         items = self.table.find(filter)
         return list(items)
-#client = MongoClient("mongodb+srv://root:nMoiWNI9fZAvAEf2@cluster0.hif69ym.mongodb.net/?retryWrites=true&w=majority")
-#db = client.get_database('Train_Bot')
-#users = db.Users
-#user = users.update_one({"name": "dasha"}, {'$push':{ 'questions': "lalala" }})
+
 class CosmoRepository:
     def __init__(self):
         self.items = DBRepository("Solar_system")
@@ -106,13 +103,13 @@ class ActionAskOrbitQuestion(Action):
         planet = tracker.get_slot("planet")
         if(planet == None):
             return dispatcher.utter_message(text=f"No planet {planet}")
-        res = list(cosmo.filterPlanet(planet))
+        res = cosmo.filterPlanet(planet)
         names = []
         for i in res: names.append(i["Name"])
-        dispatcher.utter_message(text=f"On orbit {planet}:")
+        dispatcher.utter_message(text=f"On orbit {planet}: {names.count} satelits")
 
-        dispatcher.utter_message(text=names)
-        return SlotSet("planet",None)
+        dispatcher.utter_message(text=f"{names}")
+        return {"planet": None}
 class ActionCheckQuestions(Action):
 
     def name(self) -> Text:
