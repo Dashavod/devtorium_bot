@@ -113,7 +113,7 @@ nlu:
   examples: |
     - What planet have longer rotation period [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
     - Which year greater [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
-    - Which year greater [Adrastea]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
+    - Which year greater [Ananke]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
 
 - lookup: planet
   examples: |

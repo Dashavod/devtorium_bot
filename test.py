@@ -37,13 +37,6 @@ names = []
 for i in res: names.append(i["Name"])
 print(names)
 
-first_operand = tracker.get_slot("first_operand")
-second_operand = tracker.get_slot("second_operand")
-firstInfo = cosmo.findPlanet(first_operand)
-secondInfo = cosmo.findPlanet(second_operand)
-if(abs(int(firstInfo['O_Period'])) > abs(int(secondInfo['O_Period']))):
-    print(f"{first_operand} greater then {second_operand}")
-    print(f"{first_operand} have {firstInfo['O_Period']} days\n {second_operand} have {secondInfo['O_Period']} days\n ")
 
 # users = BaseRepository()
 # print(users.findQuestions("dasha"))
