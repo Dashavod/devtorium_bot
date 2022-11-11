@@ -1,0 +1,24 @@
+version: '3.0'
+services:
+  rasa_server:
+    image: rasa/rasa:latest
+    ports:
+      - 5005:5005
+    volumes:
+      - ./:/app
+    command: run --enable-api --cors="*"
+    stdin_open: true # docker run -i
+    tty: true  
+    depends_on:
+      - actions_server    # docker run -t
+  actions_server:
+    image: vadymkhomiyk/rasa-train:rasa-actions
+    volumes:
+      - ./actions:/app
+    command: run actions
+    ports:
+      - 5055:5055
+networks:
+  default:
+    name: my-project
+    external: true
