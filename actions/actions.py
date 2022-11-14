@@ -209,8 +209,8 @@ class ValidateNameForm(FormValidationAction):
 
         # If the name is super short, it might be wrong.
         name = clean_name(slot_value)
-        if len(name) == 0:
-            dispatcher.utter_message(text="That must've been a typo.")
+        if len(name) <= 3:
+            dispatcher.utter_message(text="That must've been more than 3.")
             return {"first_name": None}
         return {"first_name": name}
 
