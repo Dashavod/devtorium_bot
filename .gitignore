@@ -1,7 +1,5 @@
-/.rasa
+.rasa/
 /models
-story_graph.dot
-actions/__pycache__/actions.cpython-37.pyc
-.rasa/cache/cache.db
-story_graph.dot
-.rasa/cache/cache.db
+.dot
+.pyc
+.db
