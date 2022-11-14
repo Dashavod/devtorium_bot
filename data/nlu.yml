@@ -90,6 +90,7 @@ nlu:
     - you need to know my name
     - do you know my name?
     - name
+    - would to know my name
 - intent: need_help
   examples: |
     - I need help
@@ -100,6 +101,7 @@ nlu:
     - What is a radius of [Earth](planet)
     - How much a radius of [Jupiter](planet)?
     - what is a radius of [Venus](planet)
+    - radius [Pluto](planet)
 - intent: ask_orbit_question
   examples: |
     - What is a planet on orbit of [Earth](planet)
@@ -114,7 +116,6 @@ nlu:
     - What planet have longer rotation period [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
     - Which year greater [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
     - Which year greater [Ananke]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
-
 - lookup: planet
   examples: |
     - Earth
