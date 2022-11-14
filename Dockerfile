@@ -1,5 +1,5 @@
 # Extend the official Rasa SDK image
-FROM rasa/rasa:latest
+FROM rasa/rasa-sdk:3.3.0
 
 # Use subdirectory as working directory
 WORKDIR /app
@@ -21,6 +21,5 @@ COPY ./actions /app/actions
 # By best practices, don't run the code with root user
 USER 1001
 
-ENTRYPOINT ["rasa"]
 
-CMD ["run", "actions", "--port", "8080"]
+

@@ -18,7 +18,7 @@
 # https://rasa.com/docs/rasa/tracker-stores
 
 action_endpoint:
-  url: "http://actions:5055/webhook"
+  url: "http://actions-server:5055/webhook"
 #tracker_store:
 #    type: redis
 #    url: <host of the redis instance, e.g. localhost>
