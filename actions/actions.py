@@ -1,9 +1,12 @@
 
 from typing import Text, List, Any, Dict
-from rasa_sdk import Tracker,Action
+from rasa_sdk import Tracker, Action, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from pymongo import MongoClient
+from rasa_sdk.types import DomainDict
+
+
 class DBRepository:
     
     def __init__(self, table):
@@ -188,7 +191,25 @@ class ActionPlanetComparsion(Action):
             dispatcher.utter_message(text=f"{second_operand} greater then {first_operand}")
         dispatcher.utter_message(text=f"{first_operand} have {firstInfo['O_Period']} days\n {second_operand} have {secondInfo['O_Period']} days\n ")
 
+class ValidateNameForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_name_form"
 
+    def validate_first_name(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `first_name` value."""
+
+        # If the name is super short, it might be wrong.
+        name = clean_name(slot_value)
+        if len(name) <= 3:
+            dispatcher.utter_message(text="That must've been more than 3.")
+            return {"first_name": None}
+        return {"first_name": name}
 def romanToInt(s):
       """
       :type s: str

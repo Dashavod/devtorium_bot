@@ -100,6 +100,7 @@ nlu:
     - What is a radius of [Earth](planet)
     - How much a radius of [Jupiter](planet)?
     - what is a radius of [Venus](planet)
+    - radius [Uranus](planet)
 - intent: ask_orbit_question
   examples: |
     - What is a planet on orbit of [Earth](planet)
