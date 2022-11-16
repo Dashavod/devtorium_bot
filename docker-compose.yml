@@ -6,7 +6,7 @@ services:
       - 5005:5005
     volumes:
       - ./:/app
-    command: run --enable-api --cors="*"
+    command: run --enable-api --cors="*" --debug
     stdin_open: true # docker run -i
     tty: true  
     depends_on:

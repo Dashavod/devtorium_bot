@@ -19,6 +19,7 @@
 
 action_endpoint:
   url: "http://devtorium-bot-actions_server-1:5055/webhook"
+
 #tracker_store:
 #    type: redis
 #    url: <host of the redis instance, e.g. localhost>
