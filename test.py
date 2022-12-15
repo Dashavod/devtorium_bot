@@ -29,14 +29,14 @@ class CosmoRepository:
         return planets
 cosmo = CosmoRepository()
 
-generalInfo = cosmo.findPlanet("Mars")
-res = cosmo.filterPlanet("Mars")
-print(f"Radius of Mars is {generalInfo['Distance']}000km")
-print(f"Mars is {generalInfo}")
-names = []
-for i in res: names.append(i["Name"])
-print(names)
-
+# generalInfo = cosmo.findPlanet("Mars")
+# res = cosmo.filterPlanet("Mars")
+# print(f"Radius of Mars is {generalInfo['Distance']}000km")
+# print(f"Mars is {generalInfo}")
+# names = []
+# for i in res: names.append(i["Name"])
+# print(names)
+#
 
 # users = BaseRepository()
 # print(users.findQuestions("dasha"))
@@ -44,10 +44,27 @@ print(names)
 # db = client["Train_Bot"]
 # coll = db["Solar_system"]
 # data = pd.read_csv("solar.csv")
-# payload = json.loads(data.to_json(orient='records'))
-# coll.insert_many(payload)
-# print(coll.count())
+# # payload = json.loads(data.to_json(orient='records'))
+# # coll.insert_many(payload)
+# for item in data:
+#     print(item)
 
-
-
-
+import csv
+import json
+a = []
+with open('solar.csv', 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        a.append(row)
+a_dict, counter = [], 0
+for item in a:
+    a_dict.append({
+        "keyword": item[0],
+        "synonyms" : [item[0], item[0].lower()]
+    })
+    print(f"{item[0]},",end=" ")
+print("dictionary")
+json_object = json.dumps(a_dict, indent = 4)
+print(json_object)
+with open("sample.json", "w") as outfile:
+    json.dump(a_dict, outfile,indent = 4)

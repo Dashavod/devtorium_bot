@@ -109,9 +109,9 @@ class ActionAskOrbitQuestion(Action):
         for i in res:
             names.append({'name':i['Name'],'number_rome': i['Number'],'number':romanToInt(i['Number'])})
         names.sort(key=lambda x: x.get('number'))
-        dispatcher.utter_message(text=f"On orbit {planet}: ")
-
-        for i in names:dispatcher.utter_message(text=f"{i['number_rome']} {i['name']},\n")
+        str = f"On orbit {planet}: "
+        for name in names: str += f"{name['number_rome']}-{name['name']}, "
+        dispatcher.utter_message(text=str)
         return {"planet": None}
 
 class ActionInfoQuestion(Action):
@@ -132,12 +132,14 @@ class ActionInfoQuestion(Action):
         for i in res:
             names.append({'name':i['Name'],'number_rome': i['Number'],'number':romanToInt(i['Number'])})
         names.sort(key=lambda x: x.get('number'))
-        dispatcher.utter_message(text=f"{ generalInfo['Name'] }:\nOrbit: {generalInfo['Orbits']} \nNumber in orbit:{generalInfo['Number']}\n")
-        dispatcher.utter_message(text=f"Radius: { generalInfo['Distance'] }000km \nPeriod: {generalInfo['O_Period']} days \nIncl:{generalInfo['Incl']}\nEccen:{generalInfo['Eccen']}\n")
-        dispatcher.utter_message(text=f"Discoverer:{ generalInfo['Discoverer'] }\nDate: {generalInfo['Date']} \nPseudonym:{generalInfo['AKA']}\n")
-        dispatcher.utter_message(text=f"On orbit {planet}:")
+        # dispatcher.utter_message(text=f"{ generalInfo['Name'] }:\nOrbit: {generalInfo['Orbits']} \nNumber in orbit:{generalInfo['Number']}\n")
+        # dispatcher.utter_message(text=f"Radius: { generalInfo['Distance'] }000km \nPeriod: {generalInfo['O_Period']} days \nIncl:{generalInfo['Incl']}\nEccen:{generalInfo['Eccen']}\n")
+        # dispatcher.utter_message(text=f"Discoverer:{ generalInfo['Discoverer'] }\nDate: {generalInfo['Date']} \nPseudonym:{generalInfo['AKA']}\n")
+        str = f"{ generalInfo['Name'] }:\nOrbit: {generalInfo['Orbits']} \nNumber in orbit:{generalInfo['Number']}\n,Radius: { generalInfo['Distance'] }000km \nPeriod: {generalInfo['O_Period']} days \nIncl:{generalInfo['Incl']}\nEccen:{generalInfo['Eccen']}\nDiscoverer:{ generalInfo['Discoverer'] }\nDate: {generalInfo['Date']} \nPseudonym:{generalInfo['AKA']}\nOn orbit {planet}: "
 
-        for i in names:dispatcher.utter_message(text=f"{i['number_rome']} {i['name']},\n")
+        for name in names: str += f"{name['number_rome']}-{name['name']}, "
+        print(str)
+        dispatcher.utter_message(text=str)
         return {"planet": None}
          
 class ActionCheckQuestions(Action):
@@ -188,10 +190,10 @@ class ActionPlanetComparsion(Action):
         firstInfo = cosmo.findPlanet(first_operand)
         secondInfo = cosmo.findPlanet(second_operand)
         if(abs(float(firstInfo['O_Period'])) > abs(float(secondInfo['O_Period']))):
-            dispatcher.utter_message(text=f"{first_operand} greater then {second_operand}")
+            str = f"{first_operand} greater then {second_operand}"
         else:
-            dispatcher.utter_message(text=f"{second_operand} greater then {first_operand}")
-        dispatcher.utter_message(text=f"{first_operand} have {firstInfo['O_Period']} days\n {second_operand} have {secondInfo['O_Period']} days\n ")
+            str = f"{second_operand} greater then {first_operand}"
+        dispatcher.utter_message(text=f"{str}{first_operand} have {firstInfo['O_Period']} days\n {second_operand} have {secondInfo['O_Period']} days\n ")
 
 
 class ValidateNameForm(FormValidationAction):

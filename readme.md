@@ -6,7 +6,7 @@ rasa run actions
 
 --endpoints.yml--
 action_endpoint:
-  url: "http://train-bot-actions_server-1:5055/webhook"
+  url: "http://devtorium-bot-actions_server-1:5055/webhook"
 
 ## docker-compose
 docker-compose
@@ -28,7 +28,7 @@ telegram:
 
 docker exec  -it train-bot-rasa_server-1 bash
 
-https://localhost:5005/webhooks/rest/webhook
+http://localhost:5005/webhooks/rest/webhook
 POST
 {
 	"sender": "test_user",

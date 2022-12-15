@@ -100,6 +100,8 @@ nlu:
   examples: |
     - What is a radius of [Earth](planet)
     - How much a radius of [Jupiter](planet)?
+    - How much a radius of [Mars](planet)?
+    - How much a radius of [Mercury](planet)?
     - what is a radius of [Venus](planet)
     - radius [Pluto](planet)
 - intent: ask_orbit_question
@@ -107,15 +109,20 @@ nlu:
     - What is a planet on orbit of [Earth](planet)
     - Which satelits around [Jupiter](planet)
     - What planet around the [Sun](planet)
+    - planet around [Saturn](planet)
 - intent: ask_info_planet
   examples: |
     - Tell me all about [Saturn](planet)
     - I would to get more information about [Uranus](planet)
+    - information about [Earth](planet)
+    - info [Mars](planet)
+    - details [Neptune](planet)
 - intent: ask_comparsion_planet
   examples: |
     - What planet have longer rotation period [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
     - Which year greater [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
     - Which year greater [Ananke]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
+    - Which year greater [Neptune]{"entity": "planet", "role": "first_operand"} or [Mercury]{"entity": "planet", "role": "second_operand"}
 - lookup: planet
   examples: |
     - Earth
