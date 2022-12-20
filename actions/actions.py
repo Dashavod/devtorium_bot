@@ -135,7 +135,7 @@ class ActionInfoQuestion(Action):
         # dispatcher.utter_message(text=f"{ generalInfo['Name'] }:\nOrbit: {generalInfo['Orbits']} \nNumber in orbit:{generalInfo['Number']}\n")
         # dispatcher.utter_message(text=f"Radius: { generalInfo['Distance'] }000km \nPeriod: {generalInfo['O_Period']} days \nIncl:{generalInfo['Incl']}\nEccen:{generalInfo['Eccen']}\n")
         # dispatcher.utter_message(text=f"Discoverer:{ generalInfo['Discoverer'] }\nDate: {generalInfo['Date']} \nPseudonym:{generalInfo['AKA']}\n")
-        str = f"{ generalInfo['Name'] }:\nOrbit: {generalInfo['Orbits']} \nNumber in orbit:{generalInfo['Number']}\n,Radius: { generalInfo['Distance'] }000km \nPeriod: {generalInfo['O_Period']} days \nIncl:{generalInfo['Incl']}\nEccen:{generalInfo['Eccen']}\nDiscoverer:{ generalInfo['Discoverer'] }\nDate: {generalInfo['Date']} \nPseudonym:{generalInfo['AKA']}\nOn orbit {planet}: "
+        str = f"Orbit: {generalInfo['Orbits']} \nNumber in orbit:{generalInfo['Number']},\nRadius: { generalInfo['Distance'] }000km \nPeriod: {generalInfo['O_Period']} days \nIncl:{generalInfo['Incl']}\nEccen:{generalInfo['Eccen']}\nDiscoverer:{ generalInfo['Discoverer'] }\nDate: {generalInfo['Date']} \nPseudonym:{generalInfo['AKA']}\nOn orbit {planet}: "
 
         for name in names: str += f"{name['number_rome']}-{name['name']}, "
         print(str)
