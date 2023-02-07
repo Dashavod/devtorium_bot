@@ -117,6 +117,7 @@ nlu:
     - information about [Earth](planet)
     - info [Mars](planet)
     - details [Neptune](planet)
+    - What do you know about the [Mars](planet)
 - intent: ask_comparsion_planet
   examples: |
     - What planet have longer rotation period [Uranus]{"entity": "planet", "role": "first_operand"} or [Earth]{"entity": "planet", "role": "second_operand"}
