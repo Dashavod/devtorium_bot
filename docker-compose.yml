@@ -3,10 +3,10 @@ services:
   rasa_server:
     image: rasa/rasa:3.3.1-full
     ports:
-      - 5005:5005
+      - 5000:5000
     volumes:
       - ./:/app
-    command: run --enable-api --cors="*" --debug
+    command: run --enable-api --cors="*" --debug --port 5000
     stdin_open: true # docker run -i
     tty: true  
     depends_on:
